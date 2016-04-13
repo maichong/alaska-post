@@ -2,7 +2,7 @@
   "name": "alaska-post",
   "version": "0.1.0",
   "description": "Alaska posts service",
-  "main": "index.js",
+  "main": "lib/alaska-post",
   "scripts": {
     "build": "babel ./src --out-dir ./lib",
     "watch": "babel ./src --out-dir ./lib -w",
