@@ -14,7 +14,7 @@ import Post from '../models/Post';
  */
 export default class UpdatePostCats extends service.Sled {
   /**
-   * @param {string|ObjectId} data.cat 最后一级子分类ID
+   * @param {string|ObjectId} data.cat 文章分类ID
    */
   async exec(data) {
     let cats = [];

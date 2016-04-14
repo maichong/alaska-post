@@ -29,5 +29,6 @@ export default {
   'Tag Name': '标签名称',
   'Related Post': '评论的目标文章',
   'Agreed Count': '支持总数',
-  'Opposed Count': '反对总数'
+  'Opposed Count': '反对总数',
+  'Post not existed': '文章不存在'
 };

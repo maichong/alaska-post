@@ -23,7 +23,7 @@ export default class UpdateCatRef extends service.Sled {
       return;
     }
     let subs = await PostCat.find({
-      cat: cat._id
+      parent: cat._id
     });
     cat.subCats = subs.map(cat => cat._id);
     await cat.save();

@@ -28,5 +28,6 @@ export default {
   'Tag Name': 'Tag Name',
   'Related Post': 'Related Post',
   'Agreed Count': 'Agreed Count',
-  'Opposed Count': 'Opposed Count'
+  'Opposed Count': 'Opposed Count',
+  'Post not existed': 'Post not existed'
 };

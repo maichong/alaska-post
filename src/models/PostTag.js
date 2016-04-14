@@ -23,9 +23,11 @@ export default class PostTag extends service.Model {
     },
     createdAt: {
       label: 'Created At',
-      type: Date
+      type: Date,
+      private: true
     }
   };
+
   preSave() {
     if (!this.createdAt) {
       this.createdAt = new Date;

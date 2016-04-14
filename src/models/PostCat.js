@@ -11,7 +11,7 @@ import _ from 'lodash';
 export default class PostCat extends service.Model {
   static label = 'Post Category';
   static defaultColumns = 'title,parent,sort,createdAt';
-  static defaultSort = '-sort';
+  static defaultSort = 'sort';
   static searchFields = 'title';
   static api = {
     list: 1
@@ -21,6 +21,7 @@ export default class PostCat extends service.Model {
     path: 'parent',
     title: 'Sub Categories'
   }];
+
   static fields = {
     title: {
       label: 'Title',
@@ -48,7 +49,8 @@ export default class PostCat extends service.Model {
     },
     createdAt: {
       label: 'Created At',
-      type: Date
+      type: Date,
+      private: true
     }
   };
   preSave() {

@@ -14,9 +14,11 @@ export default class PostComment extends service.Model {
   static defaultSort = 'createdAt';
   static searchFields = 'post,content';
   static api = {
-    list: 1,
-    show: 1
+    list: 1
   };
+  static populations = [{
+    path: 'user commentTo'
+  }];
   static fields = {
     post: {
       label: 'Related Post',

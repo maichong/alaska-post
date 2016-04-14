@@ -15,6 +15,15 @@ export default class Post extends service.Model {
     list: 1,
     show: 1
   };
+  static populations = [{
+    path: 'tags topics'
+  }, {
+    path: 'cat',
+    nolist: true
+  }, {
+    path: 'relations',
+    nolist: true
+  }];
   static fields = {
     title: {
       label: 'Title',
@@ -28,7 +37,8 @@ export default class Post extends service.Model {
     cats: {
       label: 'Categories',
       type: ['PostCat'],
-      hidden: true
+      hidden: true,
+      private: true
     },
     seoTitle: {
       label: 'SEO Title',
@@ -98,11 +108,13 @@ export default class Post extends service.Model {
       type: Date
     }
   };
+
   preSave() {
     if (!this.createdAt) {
       this.createdAt = new Date;
     }
   }
+
   postSave() {
     if (this.cat) {
       service.run('UpdatePostCats', this);
