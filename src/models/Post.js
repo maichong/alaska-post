@@ -31,7 +31,7 @@ export default class Post extends service.Model {
       require: true
     },
     cat: {
-      label: 'Category',
+      label: 'Post Category',
       ref: 'PostCat'
     },
     cats: {

@@ -8,6 +8,7 @@
 //'use strict';
 export default {
   'Post': '文章',
+  'Main Picture': '主题',
   'Post Category': '文章类目',
   'Post Comment': '文章评论',
   'Post Tag': '文章标签',
@@ -30,5 +31,7 @@ export default {
   'Related Post': '评论的目标文章',
   'Agreed Count': '支持总数',
   'Opposed Count': '反对总数',
-  'Post not existed': '文章不存在'
+  'Post not existed': '文章不存在',
+  'Parent Category': '父分类',
+  'Created At': '创建时间'
 };

@@ -13,6 +13,9 @@ export default class PostComment extends service.Model {
   static defaultColumns = 'post,topic,user,commentCount,createdAt';
   static defaultSort = 'createdAt';
   static searchFields = 'post,content';
+  static nocreate = true;
+  static noedit = true;
+  static noremove = true;
   static api = {
     list: 1
   };
@@ -44,11 +47,6 @@ export default class PostComment extends service.Model {
       label: 'Reply Target Of Comment',
       ref: 'PostComment'
     },
-    commentCount: {
-      label: 'Comment Count',
-      type: Number,
-      default: 0
-    },
     agree: {
       label: 'Agreed Count',
       type: Number,
@@ -69,5 +67,8 @@ export default class PostComment extends service.Model {
     if (!this.createdAt) {
       this.createdAt = new Date;
     }
+  }
+  postSave() {
+    service.run('UpdateCommentCount', { id: this.post });
   }
 }
