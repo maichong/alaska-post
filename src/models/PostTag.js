@@ -19,7 +19,7 @@ export default class PostTag extends service.Model {
     title: {
       label: 'Tag Name',
       type: String,
-      require: true
+      required: true
     },
     createdAt: {
       label: 'Created At',

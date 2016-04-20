@@ -29,7 +29,7 @@ export default class Post extends service.Model {
     title: {
       label: 'Title',
       type: String,
-      require: true
+      required: true
     },
     user: {
       label: 'User',

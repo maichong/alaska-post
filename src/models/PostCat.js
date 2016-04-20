@@ -26,7 +26,7 @@ export default class PostCat extends service.Model {
     title: {
       label: 'Title',
       type: String,
-      require: true
+      required: true
     },
     parent: {
       label: 'Parent Category',
@@ -53,21 +53,25 @@ export default class PostCat extends service.Model {
       private: true
     }
   };
+
   preSave() {
     if (!this.createdAt) {
       this.createdAt = new Date;
     }
   }
+
   postSave() {
     if (this.parent) {
       service.run('UpdateCatRef', { cat: this.parent });
     }
   }
+
   postRemove() {
     if (this.parent) {
       service.run('UpdateCatRef', { cat: this.parent });
     }
   }
+
   /**
    * 获取当前分类的子分类对象列表
    * @returns {[PostCat]}
@@ -78,6 +82,7 @@ export default class PostCat extends service.Model {
     }
     return await PostCat.find({ parent: this._id });
   }
+
   /**
    * 获取当前分类的所有子分类对象列表
    * @returns {[PostCat]}
