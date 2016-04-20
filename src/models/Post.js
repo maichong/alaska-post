@@ -5,7 +5,8 @@
  * rong@maichong.it
  */
 
-//'use strict';
+import PostCat from './PostCat';
+
 export default class Post extends service.Model {
   static label = 'Post';
   static defaultColumns = 'title,pic,cat,summary';
@@ -29,6 +30,12 @@ export default class Post extends service.Model {
       label: 'Title',
       type: String,
       require: true
+    },
+    user: {
+      label: 'User',
+      type: 'relationship',
+      ref: 'user.User',
+      //hidden: true
     },
     cat: {
       label: 'Post Category',
@@ -109,15 +116,22 @@ export default class Post extends service.Model {
     }
   };
 
-  preSave() {
+  async preSave() {
     if (!this.createdAt) {
       this.createdAt = new Date;
     }
-  }
-
-  postSave() {
     if (this.cat) {
-      service.run('UpdatePostCats', this);
+      let cats = [];
+      let catTemp = await PostCat.findById(this.cat);
+      catTemp && cats.push(catTemp);
+      while (catTemp && catTemp.parent) {
+        catTemp = await PostCat.findById(catTemp.parent);
+        cats.push(catTemp);
+      }
+      if (!cats.length) {
+        return;
+      }
+      this.cats = cats.map(cat => cat._id);
     }
   }
 }
