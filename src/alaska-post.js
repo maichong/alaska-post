@@ -19,4 +19,11 @@ export default class PostService extends alaska.Service {
     options.dir = __dirname;
     super(options, alaska);
   }
+
+  preLoadConfig() {
+    let ADMIN = this.alaska.service('alaska-admin', true);
+    if (ADMIN) {
+      ADMIN._configDirs.push(this.dir + '/config/alaska-admin');
+    }
+  }
 }

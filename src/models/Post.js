@@ -17,7 +17,7 @@ export default class Post extends service.Model {
     show: 1
   };
   static populations = [{
-    path: 'tags topics'
+    path: 'tags topics user'
   }, {
     path: 'cat',
     nolist: true
