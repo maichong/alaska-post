@@ -23,12 +23,10 @@ export async function list(ctx, next) {
 
 //获取相关联文章
 export async function relations(ctx) {
-  console.log('postId', ctx.query.postId);
-  let postId = ctx.query.postId;
-  let postTarget = await Post.findById(postId).populate('relations');
-  if (!postTarget) {
-    service.error('Post not existed');
-  }
+  let postId = ctx.state.post || ctx.query.post;
+  if (!postId) service.error(400);
+  let postTarget = await Post.findCache(postId).populate('relations');
+  if (!postTarget) return;
   ctx.body = postTarget.relations.map(
     post => post.data().pick('id', 'title', 'pic', 'hots', 'createdAt')
   );

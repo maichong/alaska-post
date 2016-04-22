@@ -5,9 +5,6 @@
  * chaorong@maichong.it
  */
 
-//'use strict';
-
-
 import PostCat from '../models/PostCat';
 
 /**
@@ -25,7 +22,7 @@ export default class UpdateCatRef extends service.Sled {
     let subs = await PostCat.find({
       parent: cat._id
     });
-    cat.subCats = subs.map(cat => cat._id);
+    cat.subCats = subs.map(c => c._id);
     await cat.save();
   }
 }

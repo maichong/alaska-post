@@ -5,7 +5,6 @@
  * chaorong@maichong.it
  */
 
-//'use strict';
 export default {
   prefix: '/post',
   services: [{

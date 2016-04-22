@@ -5,8 +5,6 @@
  * chaorong@maichong.it
  */
 
-//'use strict';
-
 import alaska from 'alaska';
 
 /**

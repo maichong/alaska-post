@@ -5,16 +5,17 @@
  * chaorong@maichong.it
  */
 
-//'use strict';
 export default class PostTopic extends service.Model {
   static label = 'Post Topic';
-  static defaultColumns = 'title,summary,seoTitle,createdAt';
+  static defaultColumns = 'pic,title,summary,commentCount,hots,createdAt';
   static defaultSort = 'createdAt';
-  static searchFields = 'title,summary,seoTitle';
+  static searchFields = 'title,summary';
+
   static api = {
     list: 1,
     show: 1
   };
+
   static fields = {
     title: {
       label: 'Title',
@@ -51,7 +52,7 @@ export default class PostTopic extends service.Model {
       default: 0
     },
     hots: {
-      label: 'Hots Count',
+      label: 'Hots',
       type: Number,
       default: 0
     },
@@ -65,6 +66,7 @@ export default class PostTopic extends service.Model {
       type: Date
     }
   };
+
   preSave() {
     if (!this.createdAt) {
       this.createdAt = new Date;

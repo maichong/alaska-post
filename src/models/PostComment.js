@@ -5,32 +5,34 @@
  * chaorong@maichong.it
  */
 
-//'use strict';
+import Post from './Post';
+import PostTopic from './PostTopic';
 
 export default class PostComment extends service.Model {
-
   static label = 'Post Comment';
-  static defaultColumns = 'commentCount,createdAt,user,post,topic';
+  static defaultColumns = 'post,topic,user,content,createdAt';
   static defaultSort = 'createdAt';
-  static searchFields = 'post,content';
-  static nocreate = true;
-  static noedit = true;
-  static noremove = true;
+  static searchFields = 'content';
+
   static api = {
     list: 1,
     create: 2
   };
+
   static populations = [{
     path: 'user commentTo'
   }];
+
   static fields = {
     post: {
-      label: 'Related Post',
-      ref: 'Post'
+      label: 'Post',
+      ref: 'Post',
+      index: true
     },
     topic: {
-      label: 'Related Topic',
-      ref: 'PostTopic'
+      label: 'Topic',
+      ref: 'PostTopic',
+      index: true
     },
     user: {
       label: 'User',
@@ -45,16 +47,16 @@ export default class PostComment extends service.Model {
       default: ''
     },
     commentTo: {
-      label: 'Reply Target Of Comment',
+      label: 'Reply To',
       ref: 'PostComment'
     },
     agree: {
-      label: 'Agreed Count',
+      label: 'Agreed',
       type: Number,
       default: 0
     },
     oppose: {
-      label: 'Opposed Count',
+      label: 'Opposed',
       type: Number,
       default: 0
     },
@@ -70,7 +72,18 @@ export default class PostComment extends service.Model {
     }
   }
 
-  postSave() {
-    service.run('UpdateCommentCount', { id: this.post || this.topic });
+  async postSave() {
+    let post;
+    let filters = {};
+    if (this.post) {
+      post = await Post.findCache(this.post);
+      filters.post = this.post;
+    } else if (this.topic) {
+      post = await PostTopic.findCache(this.topic);
+      filters.topic = this.topic;
+    }
+    if (!post) return;
+    post.commentCount = await PostComment.count(filters);
+    post.save();
   }
 }

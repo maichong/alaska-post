@@ -5,17 +5,18 @@
  * chaorong@maichong.it
  */
 
-//'use strict';
 import _ from 'lodash';
 
 export default class PostCat extends service.Model {
   static label = 'Post Category';
-  static defaultColumns = 'title,parent,sort,createdAt';
-  static defaultSort = 'sort';
+  static defaultColumns = '_id,title,parent,sort,createdAt';
+  static defaultSort = '-sort';
   static searchFields = 'title';
+
   static api = {
     list: 1
   };
+
   static relationships = [{
     ref: 'PostCat',
     path: 'parent',
@@ -74,7 +75,7 @@ export default class PostCat extends service.Model {
   }
 
   /**
-   * 获取当前分类的子分类对象列表
+   * [async] 获取当前分类的子分类对象列表
    * @returns {[PostCat]}
    */
   async subs() {
@@ -85,8 +86,8 @@ export default class PostCat extends service.Model {
   }
 
   /**
-   * 获取当前分类的所有子分类对象列表
-   * @returns {[PostCat]}
+   * [async] 获取当前分类的所有子分类对象列表
+   * @returns {{}}
    */
   async allSubs() {
     let list = await this.subs();

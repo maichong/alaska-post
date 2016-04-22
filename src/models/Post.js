@@ -9,13 +9,15 @@ import PostCat from './PostCat';
 
 export default class Post extends service.Model {
   static label = 'Post';
-  static defaultColumns = 'title,pic,cat,summary';
-  static defaultSort = 'createdAt';
+  static defaultColumns = 'pic,title,cat,user,createdAt';
+  static defaultSort = '-createdAt';
   static searchFields = 'title,summary';
+
   static api = {
     list: 1,
     show: 1
   };
+
   static populations = [{
     path: 'tags topics user'
   }, {
@@ -25,6 +27,7 @@ export default class Post extends service.Model {
     path: 'relations',
     nolist: true
   }];
+
   static fields = {
     title: {
       label: 'Title',
@@ -35,7 +38,6 @@ export default class Post extends service.Model {
       label: 'User',
       type: 'relationship',
       ref: 'user.User'
-      //hidden: true
     },
     cat: {
       label: 'Post Category',
@@ -90,7 +92,7 @@ export default class Post extends service.Model {
       default: 0
     },
     hots: {
-      label: 'Hots Count',
+      label: 'Hots',
       type: Number,
       default: 0
     },
@@ -119,18 +121,20 @@ export default class Post extends service.Model {
     if (!this.seoTitle) {
       this.seoTitle = this.title;
     }
-    if (this.cat) {
+    if (this.isModified('cat')) {
       let cats = [];
-      let catTemp = await PostCat.findById(this.cat);
-      catTemp && cats.push(catTemp);
-      while (catTemp && catTemp.parent) {
-        catTemp = await PostCat.findById(catTemp.parent);
-        cats.push(catTemp);
+      if (this.cat) {
+        let catTemp = await PostCat.findCache(this.cat);
+        if (catTemp) {
+          cats.push(catTemp._id);
+        }
+        while (catTemp && catTemp.parent) {
+          catTemp = await PostCat.findCache(catTemp.parent);
+          cats.push(catTemp);
+        }
+        cats = cats.map(cat => cat._id);
       }
-      if (!cats.length) {
-        return;
-      }
-      this.cats = cats.map(cat => cat._id);
+      this.cats = cats;
     }
   }
 }

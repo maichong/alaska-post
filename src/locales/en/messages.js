@@ -5,29 +5,27 @@
  * chaorong@maichong.it
  */
 
-//'use strict';
 export default {
-  'Post': 'Post',
+  Post: 'Post',
+  Topic: 'Topic',
+  Tag: 'Tag',
   'Post Category': 'Post Category',
   'Post Comment': 'Post Comment',
   'Post Tag': 'Post Tag',
   'Post Topic': 'Post Topic',
-  'Summary': 'Summary',
+  Summary: 'Summary',
   'SEO Title': 'SEO Title',
   'SEO Keywords': 'SEO Keywords',
   'SEO Description': 'SEO Description',
   'Page Template': 'Page Template',
-  'Author': 'Author',
-  'Source': 'Source',
+  Author: 'Author',
+  Source: 'Source',
   'Comment Count': 'Comment Count',
-  'Hots Count': 'Hots Count',
-  'Recommend': 'Recommend',
+  Hots: 'Hots',
+  Recommend: 'Recommend',
   'Related Posts': 'Related Posts',
-  'Reply Target Of Comment': 'Reply Target Of Comment',
-  'Related Topic': 'Related Topic',
+  'Reply To': 'Reply To',
   'Tag Name': 'Tag Name',
-  'Related Post': 'Related Post',
-  'Agreed Count': 'Agreed Count',
-  'Opposed Count': 'Opposed Count',
-  'Post not existed': 'Post not existed'
+  Agreed: 'Agreed',
+  Opposed: 'Opposed'
 };

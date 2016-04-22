@@ -5,19 +5,20 @@
  * chaorong@maichong.it
  */
 
-//'use strict';
 export default class PostTag extends service.Model {
   static label = 'Post Tag';
   static defaultColumns = 'title,createdAt';
   static defaultSort = 'createdAt';
   static searchFields = 'title';
+
   static api = {
     list: 1,
     show: 1
   };
+
   static fields = {
     title: {
-      label: 'Tag Name',
+      label: 'Tag',
       type: String,
       required: true
     },
