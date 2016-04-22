@@ -2,7 +2,7 @@
  * 脉冲软件
  * http://maichong.it
  * Created by Rong on 16/4/12.
- * rong@maichong.it
+ * chaorong@maichong.it
  */
 
 import PostCat from './PostCat';
@@ -34,7 +34,7 @@ export default class Post extends service.Model {
     user: {
       label: 'User',
       type: 'relationship',
-      ref: 'user.User',
+      ref: 'user.User'
       //hidden: true
     },
     cat: {
@@ -80,10 +80,6 @@ export default class Post extends service.Model {
       label: 'Tags',
       type: ['PostTag']
     },
-    author: {
-      label: 'Author',
-      type: String
-    },
     source: {
       label: 'Source',
       type: String
@@ -119,6 +115,9 @@ export default class Post extends service.Model {
   async preSave() {
     if (!this.createdAt) {
       this.createdAt = new Date;
+    }
+    if (!this.seoTitle) {
+      this.seoTitle = this.title;
     }
     if (this.cat) {
       let cats = [];

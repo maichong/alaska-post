@@ -2,7 +2,7 @@
  * 脉冲软件
  * http://maichong.it
  * Created by Rong on 16/4/12.
- * rong@maichong.it
+ * chaorong@maichong.it
  */
 
 //'use strict';
@@ -10,11 +10,11 @@
 export default class PostComment extends service.Model {
 
   static label = 'Post Comment';
-  static defaultColumns = 'post,topic,user,commentCount,createdAt';
+  static defaultColumns = 'commentCount,createdAt,user,post,topic';
   static defaultSort = 'createdAt';
   static searchFields = 'post,content';
-  //static nocreate = true;
-  //static noedit = true;
+  static nocreate = true;
+  static noedit = true;
   static noremove = true;
   static api = {
     list: 1,
@@ -71,6 +71,6 @@ export default class PostComment extends service.Model {
   }
 
   postSave() {
-    service.run('UpdateCommentCount', { id: this.post });
+    service.run('UpdateCommentCount', { id: this.post || this.topic });
   }
 }

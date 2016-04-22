@@ -2,7 +2,7 @@
  * 脉冲软件
  * http://maichong.it
  * Created by Rong on 16/4/12.
- * rong@maichong.it
+ * chaorong@maichong.it
  */
 
 //'use strict';
@@ -45,6 +45,16 @@ export default class PostTopic extends service.Model {
       type: String,
       default: ''
     },
+    commentCount: {
+      label: 'Comment Count',
+      type: Number,
+      default: 0
+    },
+    hots: {
+      label: 'Hots Count',
+      type: Number,
+      default: 0
+    },
     template: {
       label: 'Page Template',
       type: String,
@@ -58,6 +68,9 @@ export default class PostTopic extends service.Model {
   preSave() {
     if (!this.createdAt) {
       this.createdAt = new Date;
+    }
+    if (!this.seoTitle) {
+      this.seoTitle = this.title;
     }
   }
 }

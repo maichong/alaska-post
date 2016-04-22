@@ -2,7 +2,7 @@
  * 脉冲软件
  * http://maichong.it
  * Created by Rong on 16/4/14.
- * rong@maichong.it
+ * chaorong@maichong.it
  */
 
 import PostCat from '../models/PostCat';
