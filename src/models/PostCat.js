@@ -45,7 +45,8 @@ export default class PostCat extends service.Model {
     sort: {
       label: 'Sort',
       type: Number,
-      default: 0
+      default: 0,
+      private: true
     },
     createdAt: {
       label: 'Created At',

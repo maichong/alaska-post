@@ -8,23 +8,29 @@
 import PostComment from '../models/PostComment';
 
 //获取文章或者专题评论
-export default async function(ctx) {
-  let postId = ctx.query.postId;
-  let topicId = ctx.query.topicId;
-  let comments;
-  if (postId) {
-    comments = await PostComment.find({ post: postId }).populate('user commentTo');
-  } else if (topicId) {
-    comments = await PostComment.find({ topic: topicId }).populate('user commentTo');
-  } else {
-    service.error('system error');
+export default async function (ctx, next) {
+  let post = ctx.state.post || ctx.query.post;
+  let topic = ctx.state.topic || ctx.query.topic;
+  if (!post && !topic) service.error(400);
+
+  let filters = ctx.state.filters || ctx.query.filters || {};
+
+  if (post) {
+    filters.post = post;
+  } else if (topic) {
+    filters.topic = topic;
   }
 
-  if (!comments || !comments.length) {
-    comments = [];
-    //service.error('comments not existed');
+  ctx.state.filters = filters;
+  await next();
+
+  let results = ctx.body.results;
+  if (results) {
+    ctx.body.results = results.map(p => {
+      if (p.user) {
+        p.user = p.user.pick('id', 'username', 'avatar');
+      }
+      return p;
+    });
   }
-  ctx.body = comments.map(
-    comment => comment.data()
-  );
 }

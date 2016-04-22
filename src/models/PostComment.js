@@ -13,11 +13,12 @@ export default class PostComment extends service.Model {
   static defaultColumns = 'post,topic,user,commentCount,createdAt';
   static defaultSort = 'createdAt';
   static searchFields = 'post,content';
-  static nocreate = true;
-  static noedit = true;
+  //static nocreate = true;
+  //static noedit = true;
   static noremove = true;
   static api = {
-    list: 1
+    list: 1,
+    create: 2
   };
   static populations = [{
     path: 'user commentTo'
@@ -68,6 +69,7 @@ export default class PostComment extends service.Model {
       this.createdAt = new Date;
     }
   }
+
   postSave() {
     service.run('UpdateCommentCount', { id: this.post });
   }
