@@ -6,7 +6,7 @@
  */
 
 //获取文章或者专题评论
-export default async function (ctx, next) {
+export async function list(ctx, next) {
   let post = ctx.state.post || ctx.query.post;
   let topic = ctx.state.topic || ctx.query.topic;
   if (!post && !topic) service.error(400);

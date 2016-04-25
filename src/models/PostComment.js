@@ -11,7 +11,7 @@ import PostTopic from './PostTopic';
 export default class PostComment extends service.Model {
   static label = 'Post Comment';
   static defaultColumns = 'post,topic,user,content,createdAt';
-  static defaultSort = 'createdAt';
+  static defaultSort = '-createdAt';
   static searchFields = 'content';
 
   static api = {
