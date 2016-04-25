@@ -7,9 +7,9 @@
 
 export default class PostTopic extends service.Model {
   static label = 'Post Topic';
-  static defaultColumns = 'pic,title,summary,commentCount,hots,createdAt';
+  static defaultColumns = 'pic title summary commentCount hots createdAt';
   static defaultSort = 'createdAt';
-  static searchFields = 'title,summary';
+  static searchFields = 'title summary';
 
   static api = {
     list: 1,

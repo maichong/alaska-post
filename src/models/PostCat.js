@@ -9,19 +9,23 @@ import _ from 'lodash';
 
 export default class PostCat extends service.Model {
   static label = 'Post Category';
-  static defaultColumns = '_id,title,parent,sort,createdAt';
+  static defaultColumns = '_id title parent sort createdAt';
   static defaultSort = '-sort';
   static searchFields = 'title';
+
+  static autoSelect = false;
 
   static api = {
     list: 1
   };
 
-  static relationships = [{
-    ref: 'PostCat',
-    path: 'parent',
-    title: 'Sub Categories'
-  }];
+  static relationships = {
+    subs: {
+      ref: 'PostCat',
+      path: 'parent',
+      title: 'Sub Categories'
+    }
+  };
 
   static fields = {
     title: {

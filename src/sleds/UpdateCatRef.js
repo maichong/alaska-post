@@ -16,9 +16,7 @@ export default class UpdateCatRef extends service.Sled {
    */
   async exec(data) {
     let cat = await PostCat.findById(data.cat);
-    if (!cat) {
-      return;
-    }
+    if (!cat) return;
     let subs = await PostCat.find({
       parent: cat._id
     });

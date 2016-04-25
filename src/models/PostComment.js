@@ -10,7 +10,7 @@ import PostTopic from './PostTopic';
 
 export default class PostComment extends service.Model {
   static label = 'Post Comment';
-  static defaultColumns = 'post,topic,user,content,createdAt';
+  static defaultColumns = 'post topic user content createdAt';
   static defaultSort = 'createdAt';
   static searchFields = 'content';
 
@@ -19,9 +19,13 @@ export default class PostComment extends service.Model {
     create: 2
   };
 
-  static populations = [{
-    path: 'user commentTo'
-  }];
+  static populations = {
+    user: {
+      path: 'user',
+      select: '@tiny'
+    },
+    commentTo: {}
+  };
 
   static fields = {
     post: {

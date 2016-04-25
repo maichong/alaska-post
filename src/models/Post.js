@@ -9,24 +9,34 @@ import PostCat from './PostCat';
 
 export default class Post extends service.Model {
   static label = 'Post';
-  static defaultColumns = 'pic,title,cat,user,createdAt';
+  static defaultColumns = 'pic title cat user createdAt';
   static defaultSort = '-createdAt';
-  static searchFields = 'title,summary';
+  static searchFields = 'title summary';
+
+  static autoSelect = false;
 
   static api = {
     list: 1,
     show: 1
   };
 
-  static populations = [{
-    path: 'tags topics user'
-  }, {
-    path: 'cat',
-    nolist: true
-  }, {
-    path: 'relations',
-    nolist: true
-  }];
+  static populations = {
+    tags: {},
+    user: {
+      select: '@tiny'
+    },
+    cat: {
+      select: 'title'
+    },
+    relations: {
+      select: '@tiny'
+    }
+  };
+
+  static scopes = {
+    tiny: 'title hots createdAt',
+    list: 'title user summary pic tags commentCount hots createdAt'
+  };
 
   static fields = {
     title: {
@@ -111,6 +121,15 @@ export default class Post extends service.Model {
     createdAt: {
       label: 'Created At',
       type: Date
+    }
+  };
+
+  static virtuals = {
+    get foo() {
+      return 'bar';
+    },
+    set foo(value) {
+      this._xxxx = value;
     }
   };
 

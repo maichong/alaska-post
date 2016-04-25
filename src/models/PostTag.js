@@ -7,7 +7,7 @@
 
 export default class PostTag extends service.Model {
   static label = 'Post Tag';
-  static defaultColumns = 'title,createdAt';
+  static defaultColumns = 'title createdAt';
   static defaultSort = 'createdAt';
   static searchFields = 'title';
 

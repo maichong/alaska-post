@@ -7,19 +7,19 @@
 
 import Post from '../models/Post';
 
-export async function list(ctx, next) {
-  await next();
-
-  let results = ctx.body.results;
-  if (results) {
-    ctx.body.results = results.map(p => {
-      if (p.user) {
-        p.user = p.user.pick('id', 'username', 'avatar');
-      }
-      return p;
-    });
-  }
-}
+//export async function list(ctx, next) {
+//  await next();
+//
+//  let results = ctx.body.results;
+//  if (results) {
+//    ctx.body.results = results.map(p => {
+//      if (p.user) {
+//        p.user = p.user.pick('id', 'username', 'avatar');
+//      }
+//      return p;
+//    });
+//  }
+//}
 
 //获取相关联文章
 export async function relations(ctx) {
