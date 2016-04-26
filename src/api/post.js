@@ -21,6 +21,15 @@ import Post from '../models/Post';
 //  }
 //}
 
+//修改点击(阅读)次数
+export async function show(ctx, next) {
+  await next();
+  //修改点击(阅读)次数
+  let query = Post.findById(ctx.state.id || ctx.params.id);
+  let post = await query;
+  post.hots++;
+  post.save();
+}
 //获取相关联文章
 export async function relations(ctx) {
   let postId = ctx.state.post || ctx.query.post;

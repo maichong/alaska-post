@@ -140,12 +140,12 @@ export default class Post extends service.Model {
     if (!this.seoTitle) {
       this.seoTitle = this.title;
     }
-    if (this.isModified('cat')) {
+    if (this.cat) {
       let cats = [];
       if (this.cat) {
         let catTemp = await PostCat.findCache(this.cat);
         if (catTemp) {
-          cats.push(catTemp._id);
+          cats.push(catTemp);
         }
         while (catTemp && catTemp.parent) {
           catTemp = await PostCat.findCache(catTemp.parent);
