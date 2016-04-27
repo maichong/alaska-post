@@ -124,15 +124,6 @@ export default class Post extends service.Model {
     }
   };
 
-  static virtuals = {
-    get foo() {
-      return 'bar';
-    },
-    set foo(value) {
-      this._xxxx = value;
-    }
-  };
-
   async preSave() {
     if (!this.createdAt) {
       this.createdAt = new Date;

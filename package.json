@@ -1,7 +1,11 @@
 {
   "name": "alaska-post",
-  "version": "0.8.0",
+  "version": "0.9.1",
   "description": "Alaska posts service",
+  "keywords": [
+    "alaska",
+    "alaska-service"
+  ],
   "main": "lib/alaska-post",
   "scripts": {
     "build": "babel ./src --out-dir ./lib",
