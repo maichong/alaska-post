@@ -13,8 +13,8 @@ import alaska from 'alaska';
 export default class PostService extends alaska.Service {
   constructor(options, alaska) {
     options = options || {};
-    options.id = 'alaska-post';
-    options.dir = __dirname;
+    options.dir = options.dir || __dirname;
+    options.id = options.id || 'alaska-post';
     super(options, alaska);
   }
 

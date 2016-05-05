@@ -33,5 +33,6 @@ export default {
   'Agreed': '支持',
   'Opposed': '反对',
   'Parent Category': '父分类',
-  'Created At': '创建时间'
+  'Created At': '创建时间',
+  'Related Topic': '相关专题'
 };

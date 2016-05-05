@@ -27,5 +27,6 @@ export default {
   'Reply To': 'Reply To',
   'Tag Name': 'Tag Name',
   Agreed: 'Agreed',
-  Opposed: 'Opposed'
+  Opposed: 'Opposed',
+  'Related Topic': 'Related Topic'
 };
