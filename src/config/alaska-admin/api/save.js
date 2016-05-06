@@ -9,11 +9,11 @@ export default async function (ctx, next) {
   let serviceId = ctx.state.service || ctx.query.service;
   let modelName = ctx.state.model || ctx.query.model;
   if (ctx.user && serviceId === 'alaska-post' && modelName === 'Post') {
-    let data = ctx.state.data || ctx.request.body;
-    if (!data.user) {
-      data.user = ctx.user._id;
+    let body = ctx.state.body || ctx.request.body;
+    if (!body.user) {
+      body.user = ctx.user._id;
     }
-    ctx.state.data = data;
+    ctx.state.body = body;
   }
   await next();
 }
