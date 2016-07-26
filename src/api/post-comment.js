@@ -5,6 +5,8 @@
  * chaorong@maichong.it
  */
 
+import service from '../';
+
 //获取文章或者专题评论
 export async function list(ctx, next) {
   let post = ctx.state.post || ctx.query.post;

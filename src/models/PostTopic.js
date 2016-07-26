@@ -5,8 +5,11 @@
  * chaorong@maichong.it
  */
 
-export default class PostTopic extends service.Model {
+import alaska from 'alaska';
+
+export default class PostTopic extends alaska.Model {
   static label = 'Post Topic';
+  static icon = 'hashtag';
   static defaultColumns = 'pic title summary commentCount hots createdAt';
   static defaultSort = 'createdAt';
   static searchFields = 'title summary';

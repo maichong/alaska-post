@@ -5,8 +5,11 @@
  * chaorong@maichong.it
  */
 
-export default class PostTag extends service.Model {
+import alaska from 'alaska';
+
+export default class PostTag extends alaska.Model {
   static label = 'Post Tag';
+  static icon = 'tags';
   static defaultColumns = 'title createdAt';
   static defaultSort = 'createdAt';
   static searchFields = 'title';

@@ -5,6 +5,7 @@
  * chaorong@maichong.it
  */
 
+import service from '../';
 import Post from '../models/Post';
 
 //修改点击(阅读)次数

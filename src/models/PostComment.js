@@ -5,11 +5,13 @@
  * chaorong@maichong.it
  */
 
+import alaska from 'alaska';
 import Post from './Post';
 import PostTopic from './PostTopic';
 
-export default class PostComment extends service.Model {
+export default class PostComment extends alaska.Model {
   static label = 'Post Comment';
+  static icon = 'comments';
   static defaultColumns = 'post topic user content createdAt';
   static defaultSort = '-createdAt';
   static searchFields = 'content';
@@ -41,7 +43,7 @@ export default class PostComment extends service.Model {
     user: {
       label: 'User',
       type: 'relationship',
-      ref: 'user.User',
+      ref: 'alaska-user.User',
       noedit: true,
       index: true
     },

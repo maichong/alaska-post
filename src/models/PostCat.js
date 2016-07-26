@@ -6,9 +6,12 @@
  */
 
 import _ from 'lodash';
+import alaska from 'alaska';
+import service from '../';
 
-export default class PostCat extends service.Model {
+export default class PostCat extends alaska.Model {
   static label = 'Post Category';
+  static icon = 'paperclip';
   static defaultColumns = '_id title parent sort createdAt';
   static defaultSort = '-sort';
   static searchFields = 'title';

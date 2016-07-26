@@ -5,10 +5,12 @@
  * chaorong@maichong.it
  */
 
+import alaska from 'alaska';
 import PostCat from './PostCat';
 
-export default class Post extends service.Model {
+export default class Post extends alaska.Model {
   static label = 'Post';
+  static icon = 'file-text-o';
   static defaultColumns = 'pic title cat user createdAt';
   static defaultSort = '-createdAt';
   static searchFields = 'title summary';
@@ -47,7 +49,7 @@ export default class Post extends service.Model {
     user: {
       label: 'User',
       type: 'relationship',
-      ref: 'user.User'
+      ref: 'alaska-user.User'
     },
     cat: {
       label: 'Post Category',
