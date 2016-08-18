@@ -11,11 +11,11 @@ import alaska from 'alaska';
  * @class PostService
  */
 class PostService extends alaska.Service {
-  constructor(options, alaska) {
+  constructor(options) {
     options = options || {};
     options.dir = options.dir || __dirname;
     options.id = options.id || 'alaska-post';
-    super(options, alaska);
+    super(options);
   }
 
   preLoadConfig() {

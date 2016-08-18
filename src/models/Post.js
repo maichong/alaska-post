@@ -53,6 +53,7 @@ export default class Post extends alaska.Model {
     },
     cat: {
       label: 'Post Category',
+      type: 'category',
       ref: 'PostCat'
     },
     cats: {

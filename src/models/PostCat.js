@@ -26,7 +26,8 @@ export default class PostCat extends alaska.Model {
     subs: {
       ref: 'PostCat',
       path: 'parent',
-      title: 'Sub Categories'
+      title: 'Sub Categories',
+      private: true
     }
   };
 
@@ -38,13 +39,12 @@ export default class PostCat extends alaska.Model {
     },
     parent: {
       label: 'Parent Category',
-      type: 'relationship',
+      type: 'category',
       ref: 'PostCat',
       index: true
     },
     subCats: {
       label: 'Sub Categories',
-      type: 'relationship',
       ref: 'PostCat',
       multi: true,
       hidden: true,
